@@ -1,17 +1,8 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Activity } from "lucide-react";
-
-const generateActivity = () => {
-  const weeks = 12;
-  const days = 7;
-  return Array.from({ length: weeks }, () =>
-    Array.from({ length: days }, () => Math.floor(Math.random() * 5)),
-  );
-};
-
-const activityData = generateActivity();
 
 const intensityClass = (value: number) => {
   if (value === 0) return "bg-white/5 border-white/5";
@@ -20,6 +11,22 @@ const intensityClass = (value: number) => {
   if (value === 3) return "bg-violet-500/80 border-violet-400/50";
   return "bg-violet-400 border-violet-300/60";
 };
+
+// Fixed data — no Math.random(), no hydration mismatch
+const ACTIVITY_DATA = [
+  [4, 2, 0, 3, 1, 4, 2],
+  [0, 3, 2, 4, 1, 0, 3],
+  [2, 1, 4, 0, 3, 2, 1],
+  [3, 4, 1, 2, 0, 3, 4],
+  [1, 0, 3, 4, 2, 1, 0],
+  [4, 2, 1, 3, 0, 4, 2],
+  [0, 3, 4, 1, 2, 0, 3],
+  [2, 1, 0, 4, 3, 2, 1],
+  [3, 4, 2, 0, 1, 3, 4],
+  [1, 0, 3, 2, 4, 1, 0],
+  [4, 2, 1, 0, 3, 4, 2],
+  [0, 3, 4, 2, 1, 0, 3],
+];
 
 export default function ActivityTile() {
   return (
@@ -35,9 +42,8 @@ export default function ActivityTile() {
         </h2>
       </div>
 
-      {/* Contribution graph */}
       <div className="flex gap-1">
-        {activityData.map((week, wi) => (
+        {ACTIVITY_DATA.map((week, wi) => (
           <div key={wi} className="flex flex-col gap-1">
             {week.map((day, di) => (
               <motion.div
@@ -57,7 +63,6 @@ export default function ActivityTile() {
         ))}
       </div>
 
-      {/* Legend */}
       <div className="flex items-center gap-2 mt-4">
         <span className="text-xs text-white/30">Less</span>
         {[0, 1, 2, 3, 4].map((v) => (
