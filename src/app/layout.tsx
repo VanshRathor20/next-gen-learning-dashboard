@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 
@@ -19,11 +19,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${geist.variable} bg-[#0a0a0f] text-white antialiased`}>
-        <div className="flex h-screen overflow-hidden">
+    <html lang="en">
+      <body
+        className={`${geist.variable} antialiased`}
+        style={{ backgroundColor: "#0a0a0f", color: "white" }}
+      >
+        <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
           <Sidebar />
-          <main className="flex-1 overflow-y-auto">{children}</main>
+          <main
+            style={{ flex: 1, overflowY: "auto" }}
+            className="pb-20 lg:pb-0"
+          >
+            {children}
+          </main>
         </div>
       </body>
     </html>
