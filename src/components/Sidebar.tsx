@@ -27,7 +27,7 @@ export default function Sidebar() {
     <motion.nav
       animate={{ width: collapsed ? 72 : 220 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="relative flex flex-col h-full bg-[#0f0f17] border-r border-white/5 py-6 overflow-hidden"
+      className="relative flex flex-col h-full bg-[#0f0f17] border-r border-white/5 py-6 overflow-hidden flex-shrink-0"
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 mb-10">
@@ -50,7 +50,7 @@ export default function Sidebar() {
       </div>
 
       {/* Nav Items */}
-      <nav className="flex flex-col gap-1 px-3 flex-1">
+      <div className="flex flex-col gap-1 px-3 flex-1">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.id;
@@ -59,9 +59,8 @@ export default function Sidebar() {
             <button
               key={item.id}
               onClick={() => setActive(item.id)}
-              className="relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors duration-150 w-full text-left"
+              className="relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm w-full text-left"
             >
-              {/* Active background with layoutId */}
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active"
@@ -95,7 +94,7 @@ export default function Sidebar() {
             </button>
           );
         })}
-      </nav>
+      </div>
 
       {/* Collapse Toggle */}
       <button
