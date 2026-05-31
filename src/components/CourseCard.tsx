@@ -1,15 +1,25 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, animate } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 import * as LucideIcons from "lucide-react";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Clock, CheckCircle } from "lucide-react";
 import { Course } from "@/types/course";
 
 interface CourseCardProps {
   course: Course;
   index: number;
 }
+
+const courseMeta: Record<
+  string,
+  { duration: string; lessons: number; total: number }
+> = {
+  "Advanced React Patterns": { duration: "4h 30m", lessons: 9, total: 12 },
+  "TypeScript Mastery": { duration: "3h 15m", lessons: 5, total: 14 },
+  "System Design Fundamentals": { duration: "6h 00m", lessons: 8, total: 13 },
+  "Framer Motion & Animation": { duration: "2h 45m", lessons: 11, total: 12 },
+};
 
 function DynamicIcon({ name }: { name: string }) {
   const Icon = (
@@ -28,7 +38,6 @@ function AnimatedProgressBar({ progress }: { progress: number }) {
   useEffect(() => {
     const bar = barRef.current;
     if (!bar) return;
-
     const controls = animate(0, progress, {
       duration: 1.2,
       ease: "easeOut",
@@ -36,7 +45,6 @@ function AnimatedProgressBar({ progress }: { progress: number }) {
         bar.style.width = `${value}%`;
       },
     });
-
     return () => controls.stop();
   }, [progress]);
 
@@ -52,6 +60,12 @@ function AnimatedProgressBar({ progress }: { progress: number }) {
 }
 
 export default function CourseCard({ course, index }: CourseCardProps) {
+  const meta = courseMeta[course.title] ?? {
+    duration: "3h 00m",
+    lessons: 6,
+    total: 10,
+  };
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -63,23 +77,23 @@ export default function CourseCard({ course, index }: CourseCardProps) {
         damping: 24,
       }}
       whileHover={{ scale: 1.02 }}
-      className="relative rounded-2xl border border-white/5 bg-[#0f0f17] p-6 overflow-hidden group"
+      className="relative rounded-2xl border border-white/5 bg-[#0f0f17] p-6 overflow-hidden group cursor-pointer"
     >
-      {/* Hover glow border */}
-      <motion.div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+      {/* Grain texture */}
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none z-0"
         style={{
-          background:
-            "linear-gradient(135deg, rgba(139,92,246,0.08), rgba(217,70,239,0.05))",
-          boxShadow: "inset 0 0 0 1px rgba(139,92,246,0.2)",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Grain texture overlay */}
+      {/* Hover glow */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          background:
+            "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(217,70,239,0.06))",
+          boxShadow: "inset 0 0 0 1px rgba(139,92,246,0.25)",
         }}
       />
 
@@ -89,12 +103,26 @@ export default function CourseCard({ course, index }: CourseCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="relative z-10 text-sm font-semibold text-white mb-1 leading-snug">
+      <h3 className="relative z-10 text-sm font-semibold text-white mb-3 leading-snug">
         {course.title}
       </h3>
 
-      {/* Progress label */}
-      <div className="relative z-10 flex justify-between items-center mb-2 mt-4">
+      {/* Meta info */}
+      <div className="relative z-10 flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-1.5">
+          <Clock size={11} className="text-white/30" />
+          <span className="text-xs text-white/30">{meta.duration}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <CheckCircle size={11} className="text-white/30" />
+          <span className="text-xs text-white/30">
+            {meta.lessons}/{meta.total} lessons
+          </span>
+        </div>
+      </div>
+
+      {/* Progress */}
+      <div className="relative z-10 flex justify-between items-center mb-2">
         <span className="text-xs text-white/30 uppercase tracking-wider">
           Progress
         </span>
@@ -102,8 +130,6 @@ export default function CourseCard({ course, index }: CourseCardProps) {
           {course.progress}%
         </span>
       </div>
-
-      {/* Animated progress bar */}
       <div className="relative z-10">
         <AnimatedProgressBar progress={course.progress} />
       </div>
