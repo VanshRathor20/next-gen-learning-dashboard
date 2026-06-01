@@ -28,8 +28,8 @@ function DynamicIcon({ name }: { name: string }) {
       React.ComponentType<{ size?: number; className?: string }>
     >
   )[name];
-  if (!Icon) return <BookOpen size={20} className="text-violet-400" />;
-  return <Icon size={20} className="text-violet-400" />;
+  if (!Icon) return <BookOpen size={20} className="text-gray-300" />;
+  return <Icon size={20} className="text-gray-300" />;
 }
 
 function AnimatedProgressBar({ progress }: { progress: number }) {
@@ -52,7 +52,7 @@ function AnimatedProgressBar({ progress }: { progress: number }) {
     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
       <div
         ref={barRef}
-        className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"
+        className="h-full bg-gradient-to-r from-gray-400 to-gray-300 rounded-full"
         style={{ width: "0%" }}
       />
     </div>
@@ -92,13 +92,13 @@ export default function CourseCard({ course, index }: CourseCardProps) {
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
         style={{
           background:
-            "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(217,70,239,0.06))",
-          boxShadow: "inset 0 0 0 1px rgba(139,92,246,0.25)",
+            "linear-gradient(135deg, rgba(200,200,200,0.04), rgba(230,230,230,0.02))",
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.03)",
         }}
       />
 
       {/* Icon */}
-      <div className="relative z-10 w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4">
+      <div className="relative z-10 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
         <DynamicIcon name={course.icon_name} />
       </div>
 
@@ -126,7 +126,7 @@ export default function CourseCard({ course, index }: CourseCardProps) {
         <span className="text-xs text-white/30 uppercase tracking-wider">
           Progress
         </span>
-        <span className="text-xs font-semibold text-violet-400">
+        <span className="text-xs font-semibold text-gray-300">
           {course.progress}%
         </span>
       </div>

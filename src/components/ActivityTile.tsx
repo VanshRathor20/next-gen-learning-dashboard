@@ -6,10 +6,10 @@ import { Activity } from "lucide-react";
 
 const intensityClass = (value: number) => {
   if (value === 0) return "bg-white/5 border-white/5";
-  if (value === 1) return "bg-violet-900/60 border-violet-700/30";
-  if (value === 2) return "bg-violet-700/70 border-violet-500/40";
-  if (value === 3) return "bg-violet-500/80 border-violet-400/50";
-  return "bg-violet-400 border-violet-300/60";
+  if (value === 1) return "bg-gray-900/40 border-white/10";
+  if (value === 2) return "bg-gray-800/50 border-white/15";
+  if (value === 3) return "bg-white/8 border-white/20";
+  return "bg-gray-300 border-white/30";
 };
 
 // Fixed data — no Math.random(), no hydration mismatch
@@ -36,7 +36,7 @@ export default function ActivityTile() {
       className="rounded-2xl border border-white/5 bg-[#0f0f17] p-6"
     >
       <div className="flex items-center gap-2 mb-5">
-        <Activity size={16} className="text-violet-400" />
+        <Activity size={16} className="text-gray-300" />
         <h2 className="text-sm font-semibold text-white/70 uppercase tracking-widest">
           Activity
         </h2>

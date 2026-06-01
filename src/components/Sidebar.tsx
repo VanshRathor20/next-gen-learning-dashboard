@@ -36,7 +36,7 @@ export default function Sidebar() {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-4 mb-10">
-          <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center flex-shrink-0">
             <Zap size={16} className="text-white" />
           </div>
           <AnimatePresence>
@@ -68,14 +68,14 @@ export default function Sidebar() {
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active-desktop"
-                    className="absolute inset-0 bg-violet-600/20 border border-violet-500/30 rounded-xl"
+                    className="absolute inset-0 bg-white/8 border border-white/15 rounded-xl"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
                 <Icon
                   size={18}
                   className={`relative z-10 flex-shrink-0 transition-colors ${
-                    isActive ? "text-violet-400" : "text-white/40"
+                    isActive ? "text-gray-300" : "text-white/40"
                   }`}
                 />
                 <AnimatePresence>
@@ -86,7 +86,7 @@ export default function Sidebar() {
                       exit={{ opacity: 0, x: -8 }}
                       transition={{ duration: 0.15 }}
                       className={`relative z-10 whitespace-nowrap transition-colors ${
-                        isActive ? "text-violet-300" : "text-white/50"
+                        isActive ? "text-white/70" : "text-white/50"
                       }`}
                     >
                       {item.label}
@@ -109,7 +109,7 @@ export default function Sidebar() {
 
       {/* ─── TABLET sidebar (768px–1024px) icons only ─── */}
       <nav className="hidden md:flex lg:hidden flex-col h-full w-[72px] bg-[#0f0f17] border-r border-white/5 py-6 items-center flex-shrink-0">
-        <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center mb-10">
+        <div className="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center mb-10">
           <Zap size={16} className="text-white" />
         </div>
         <div className="flex flex-col gap-1 w-full px-3 flex-1">
@@ -126,14 +126,14 @@ export default function Sidebar() {
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-active-tablet"
-                    className="absolute inset-0 bg-violet-600/20 border border-violet-500/30 rounded-xl"
+                    className="absolute inset-0 bg-white/8 border border-white/15 rounded-xl"
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
                 <Icon
                   size={18}
                   className={`relative z-10 transition-colors ${
-                    isActive ? "text-violet-400" : "text-white/40"
+                    isActive ? "text-gray-300" : "text-white/40"
                   }`}
                 />
               </button>
@@ -174,7 +174,7 @@ export default function Sidebar() {
               {/* Header */}
               <div className="flex items-center justify-between px-4 mb-10">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-gray-700 flex items-center justify-center">
                     <Zap size={16} className="text-white" />
                   </div>
                   <span className="text-sm font-semibold text-white">
@@ -206,7 +206,7 @@ export default function Sidebar() {
                       {isActive && (
                         <motion.div
                           layoutId="sidebar-active-mobile"
-                          className="absolute inset-0 bg-violet-600/20 border border-violet-500/30 rounded-xl"
+                          className="absolute inset-0 bg-white/8 border border-white/15 rounded-xl"
                           transition={{
                             type: "spring",
                             stiffness: 300,
@@ -217,12 +217,12 @@ export default function Sidebar() {
                       <Icon
                         size={18}
                         className={`relative z-10 flex-shrink-0 transition-colors ${
-                          isActive ? "text-violet-400" : "text-white/40"
+                          isActive ? "text-gray-300" : "text-white/40"
                         }`}
                       />
                       <span
                         className={`relative z-10 whitespace-nowrap transition-colors ${
-                          isActive ? "text-violet-300" : "text-white/50"
+                          isActive ? "text-white/70" : "text-white/50"
                         }`}
                       >
                         {item.label}
@@ -250,19 +250,19 @@ export default function Sidebar() {
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active-bottom"
-                  className="absolute inset-0 bg-violet-600/20 rounded-xl"
+                  className="absolute inset-0 bg-white/8 rounded-xl"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
               <Icon
                 size={18}
                 className={`relative z-10 transition-colors ${
-                  isActive ? "text-violet-400" : "text-white/40"
+                  isActive ? "text-gray-300" : "text-white/40"
                 }`}
               />
               <span
                 className={`relative z-10 text-[10px] transition-colors ${
-                  isActive ? "text-violet-300" : "text-white/40"
+                  isActive ? "text-white/70" : "text-white/40"
                 }`}
               >
                 {item.label}

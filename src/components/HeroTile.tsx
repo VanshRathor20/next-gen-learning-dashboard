@@ -24,9 +24,9 @@ export default function HeroTile() {
       />
 
       {/* Glow blobs */}
-      <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-violet-600/10 blur-3xl pointer-events-none z-0" />
-      <div className="absolute -bottom-10 left-40 w-48 h-48 rounded-full bg-fuchsia-600/8 blur-3xl pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-br from-violet-900/15 via-transparent to-fuchsia-900/8 pointer-events-none z-0" />
+      <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-white/5 blur-3xl pointer-events-none z-0" />
+      <div className="absolute -bottom-10 left-40 w-48 h-48 rounded-full bg-white/5 blur-3xl pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/40 via-transparent to-gray-900/20 pointer-events-none z-0" />
 
       <div className="relative z-10 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
         {/* Left — Greeting */}
@@ -87,7 +87,7 @@ export default function HeroTile() {
           {/* Today's Progress */}
           <div className="rounded-xl bg-white/5 border border-white/[0.08] p-4">
             <div className="flex items-center gap-2 mb-3">
-              <Target size={14} className="text-violet-400" />
+              <Target size={14} className="text-gray-300" />
               <span className="text-xs text-white/50 uppercase tracking-wider">
                 Today's Progress
               </span>
@@ -103,7 +103,7 @@ export default function HeroTile() {
                 initial={{ width: 0 }}
                 animate={{ width: `${todayProgress}%` }}
                 transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-                className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"
+                className="h-full bg-gradient-to-r from-gray-400 to-gray-300 rounded-full"
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function HeroTile() {
           {/* Lessons Today */}
           <div className="rounded-xl bg-white/5 border border-white/[0.08] p-4">
             <div className="flex items-center gap-2 mb-2">
-              <BookOpen size={14} className="text-fuchsia-400" />
+              <BookOpen size={14} className="text-gray-300" />
               <span className="text-xs text-white/50 uppercase tracking-wider">
                 Lessons Today
               </span>
@@ -125,13 +125,13 @@ export default function HeroTile() {
           </div>
 
           {/* Motivational — Lucide icon instead of emoji */}
-          <div className="rounded-xl bg-violet-500/8 border border-violet-500/15 p-4">
+          <div className="rounded-xl bg-white/5 border border-white/15 p-4">
             <div className="flex items-start gap-2">
               <Flame
                 size={14}
                 className="text-orange-400 mt-0.5 flex-shrink-0"
               />
-              <p className="text-xs text-violet-300/70 leading-relaxed">
+              <p className="text-xs text-white/70 leading-relaxed">
                 You're on fire! Complete 1 more lesson to hit your daily goal.
               </p>
             </div>
